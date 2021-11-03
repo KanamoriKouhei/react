@@ -16,6 +16,141 @@
 <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
 <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
 <script type="text/babel">
+    const root = document.getElementById('root');
+
+    //6. イベント処理
+    class LoggingButton extends React.Component {
+        handleClick() {
+            console.log(this);
+        }
+        render () {
+            return (
+                <button onClick={() => this.handleClick()}>
+                    Click
+                </button>
+            );
+        }
+    }
+    ReactDOM.render(
+        <LoggingButton/>,
+        root,
+    );
+    // class Toggle extends React.Component {
+    //     constructor(props) {
+    //         super(props);
+    //         this.state = {isToggleOn: true};
+    //         this.handleClick = this.handleClick.bind(this);
+    //     }
+    //
+    //     handleClick() {
+    //         this.setState(prevState => ({isToggleOn: !prevState.isToggleOn}));
+    //         // this.setState(function (prevState) {
+    //         //     return {isToggleOn: !prevState.isToggleOn}
+    //         // });
+    //         // this.setState((prevState) => {
+    //         //         return {isToggleOn: !prevState.isToggleOn}
+    //         // });
+    //         // this.setState(prevState => ({
+    //         //     isToggleOn: !prevState.isToggleOn
+    //         // }));
+    //     }
+    //
+    //     render() {
+    //         return (
+    //             <button onClick={this.handleClick}>
+    //                 {this.state.isToggleOn ? 'ON' : 'OFF'}
+    //             </button>
+    //         );
+    //     }
+    // }
+    // ReactDOM.render(
+    //     <Toggle/>,
+    //     root,
+    // );
+
+    //ファンクションコンポーネント、頭文字は大文字
+    // function Form() {
+    //     //submit無効化
+    //     function handleSubmit(e) {
+    //         e.preventDefault();
+    //         console.log('YOU CANT SUBMIT');
+    //         //↓これじゃ無理
+    //         // return false;
+    //     }
+    //     return (
+    //         //イベントはキャメルケース
+    //         <form onSubmit={handleSubmit}>
+    //             <button type="submit">登録</button>
+    //         </form>
+    //     );
+    // }
+    // ReactDOM.render(
+    //     <Form/>,
+    //     root,
+    // );
+    //5. state とライフサイクル
+    // State: そのコンポーネントが持っている状態
+    // 代入できるのはコンストラクタの中だけ setSateで更新する
+    // Props: 親コンポーネントから渡されたプロパティ　更新不可
+    // class Clock extends React.Component {
+    //     //1
+    //     constructor(props) {
+    //         super(props);
+    //         this.state = {date:new Date()};
+    //     }
+    //     //3
+    //     componentDidMount () {
+    //         this.timerID = setInterval(
+    //             () => this.tick(),
+    //             1000,
+    //         );
+    //     }
+    //     //DOM削除時、呼び出される
+    //     componentWillUnmount () {
+    //         clearInterval(this.timerID);
+    //     }
+    //     //4
+    //     tick() {
+    //         this.setState({
+    //             date:new Date(),
+    //         })
+    //     }
+    //     //2
+    //     render() {
+    //         return (
+    //             <div>
+    //                 <h1>HELLO WORLD</h1>
+    //                 <h2>it is {this.state.date.toLocaleTimeString()}</h2>
+    //             </div>
+    //         );
+    //     }
+    // }
+    // ReactDOM.render(
+    //     <Clock/>,
+    //     root,
+    // );
+    // function Clock(props) {
+    //     return (
+    //         <div>
+    //             <h1>HELLO WORLD</h1>
+    //             <h2>It is {props.date.toLocaleString()}</h2>
+    //         </div>
+    //     );
+    // }
+    // ReactDOM.render(
+    //     <Clock date={new Date()}/>,
+    //     document.getElementById('root'),
+    // );
+    // function tick() {
+    //     const element = (
+    //         <div>
+    //             <h1>HELLO WORLD</h1>
+    //             <h2>It is {new Date().toLocaleTimeString()}</h2>
+    //         </div>
+    //     );
+    //     ReactDOM.render(element,document.getElementById('root'));
+    // }
+    // setInterval(tick,1000);
     // 4.コンポーネントとprops
     // function Comment(props) {
     //     return (
