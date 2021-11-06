@@ -14,27 +14,126 @@
 <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
 <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
 <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+<!--babel-->
 <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
 <script type="text/babel">
     const root = document.getElementById('root');
 
-    //6. イベント処理
-    class LoggingButton extends React.Component {
-        handleClick() {
-            console.log(this);
-        }
-        render () {
-            return (
-                <button onClick={() => this.handleClick()}>
-                    Click
-                </button>
-            );
-        }
+    //7. 条件付きレンダー
+    function MailBox(props) {
+        const unReadMessages = props.unreadMessages;
+        return(
+            <div>
+                <h1>HELLO</h1>
+                {unReadMessages.length > 0 &&
+                    <h2>
+                        YOU HAVE {unReadMessages.length} unread messages.
+                    </h2>
+                }
+            </div>
+        );
     }
-    ReactDOM.render(
-        <LoggingButton/>,
-        root,
-    );
+    const messages = ['React', 'Re: React', 'Re:Re: React'];
+    // ReactDOM.render(
+    //     <MailBox unreadMessages={messages}/>,
+    //     root,
+    // );
+    // const count = 1;
+    // ReactDOM.render(
+    //     <div>
+    //         {count && <h1>messages:{count}</h1>}
+    //     </div>,
+    //     root,
+    // );
+    // class LoginControl extends React.Component {
+    //     constructor(props) {
+    //         super(props);
+    //         // this.handleLoginClick = this.handleLoginClick.bind(this);
+    //         // this.handleLogoutClick = this.handleLogoutClick.bind(this);
+    //         this.state = {isLoggedIn: false};
+    //     }
+    //     handleLoginClick = () => {
+    //         this.setState({isLoggedIn: true});
+    //     }
+    //     handleLogoutClick = () => {
+    //         this.setState({isLoggedIn: false});
+    //     }
+    //     render() {
+    //         const isLoggedIn = this.state.isLoggedIn;
+    //         let button;
+    //         if (isLoggedIn) {
+    //             button = <LogoutButton onClick={this.handleLogoutClick}/>
+    //         } else {
+    //             button = <LoginButton onClick={this.handleLoginClick}/>
+    //         }
+    //         return (
+    //             <div>
+    //                 <Greeting isLoggedIn={isLoggedIn}/>
+    //                 {button}
+    //             </div>
+    //         );
+    //     }
+    // }
+    //
+    // ReactDOM.render(
+    //     <LoginControl/>,
+    //     root,
+    // );
+    //
+    // function LoginButton(props) {
+    //     return (
+    //         <button onClick={props.onClick}>
+    //             LOGIN
+    //         </button>
+    //     );
+    // }
+    //
+    // function LogoutButton(props) {
+    //     return (
+    //         <button onClick={props.onClick}>
+    //             LOGOUT
+    //         </button>
+    //     );
+    // }
+    //
+    // function UserGreeting(props) {
+    //     return <h1>WELCOME BACK</h1>;
+    // }
+    //
+    // function GuestGreeting(props) {
+    //     return <h1>PLEASE SIGN IN</h1>;
+    // }
+    //
+    // function Greeting(props) {
+    //     const isLoggedIn = props.isLoggedIn;
+    //     if (isLoggedIn) {
+    //         return <UserGreeting/>;
+    //     } else {
+    //         return <GuestGreeting/>;
+    //     }
+    // }
+
+    // ReactDOM.render(
+    //     <Greeting isLoggedIn={true}/>,
+    //     root,
+    // );
+    //6. イベント処理
+    // class LoggingButton extends React.Component {
+    //     handleClick = () => {
+    //         console.log(this);
+    //     }
+    //     render () {
+    //         return (
+    //             <button onClick={this.handleClick}>
+    //                 Click
+    //             </button>
+    //         );
+    //     }
+    // }
+    // ReactDOM.render(
+    //     <LoggingButton/>,
+    //     root,
+    // );
     // class Toggle extends React.Component {
     //     constructor(props) {
     //         super(props);
