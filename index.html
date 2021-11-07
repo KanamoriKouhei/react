@@ -18,30 +18,89 @@
 <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
 <script type="text/babel">
     const root = document.getElementById('root');
+    //9. フォーム
+    class NameForm extends React.Component {
+        constructor(props) {
+            super(props);
+            this.state = {name:'',essay:'',fav:''}
+        }
+        handleChange = (e) => {
+            console.log(e.target.type);
+            const name = e.target.name;
+            const value = e.target.value;
+            this.setState({[name]:value});
+            // if (e.target.type === 'text') {
+            //     this.setState({input:e.target.value});
+            // } else if (e.target.type === 'textarea') {
+            //     this.setState({text:e.target.value});
+            // } else if (e.target.type === 'select-one') {
+            //     this.setState({select:e.target.value});
+            // }
+        }
+        handleSubmit = (e) => {
+            e.preventDefault();
+        }
+        render(){
+            return(
+                <form onSubmit={this.handleSubmit}>
+                    <p>
+                        <label>
+                            Name:
+                            <input type="text" name="name" value={this.state.name} onChange={this.handleChange}/>
+                        </label>
+                    </p>
+                    <p>
+                        <label>
+                            Essay:
+                            <textarea name="essay" value={this.state.essay} onChange={this.handleChange}></textarea>
+                        </label>
+                    </p>
+                    <p>
+                        <label>
+                            Fav:
+                            <select name="fav" value={this.state.fav} onChange={this.handleChange}>
+                                <option value="">選択して下さい</option>
+                                <option value="grapefruit">Grapefruit</option>
+                                <option value="lime">Lime</option>
+                                <option value="coconut">Coconut</option>
+                                <option value="mango">Mango</option>
+                            </select>
+                        </label>
+                    </p>
+                    <input type="submit" value="submit"/>
+                </form>
+            );
+        }
+    }
+    ReactDOM.render(<input value="hi" />, root);
+
+    setTimeout(function() {
+        ReactDOM.render(<input value={null} />, root);
+    }, 10000);
     //8.リストと key
-    const numbers = [1, 2, 3, 4, 5];
+    // const numbers = [1, 2, 3, 4, 5];
     // const listItems = numbers.map(number => (
     //     <li key={number.toString()}>{number}</li>
     // ));
-    function ListItems(props) {
-        const numbers = props.numbers;
-        // const items = numbers.map(number => (
-        //     <li key={number.toString()}>{number}</li>
-        // ));
-        return (
-            <ul>
-                {
-                    numbers.map(number => (
-                        <li key={number.toString()}>{number}</li>
-                    ))
-                }
-            </ul>
-        );
-    }
-    ReactDOM.render(
-        <ListItems numbers={numbers}/>,
-        root,
-    );
+    // function ListItems(props) {
+    //     const numbers = props.numbers;
+    //     // const items = numbers.map(number => (
+    //     //     <li key={number.toString()}>{number}</li>
+    //     // ));
+    //     return (
+    //         <ul>
+    //             {
+    //                 numbers.map(number => (
+    //                     <li key={number.toString()}>{number}</li>
+    //                 ))
+    //             }
+    //         </ul>
+    //     );
+    // }
+    // ReactDOM.render(
+    //     <ListItems numbers={numbers}/>,
+    //     root,
+    // );
     //7. 条件付きレンダー
     // function WarningBanner(props) {
     //     const warningButton = (
