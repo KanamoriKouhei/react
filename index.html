@@ -18,42 +18,65 @@
 <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
 <script type="text/babel">
     const root = document.getElementById('root');
-
-    //7. 条件付きレンダー
-    function WarningBanner(props) {
-        const warningButton = (
-            <div className="warning">
-                Warning!
-            </div>
+    //8.リストと key
+    const numbers = [1, 2, 3, 4, 5];
+    // const listItems = numbers.map(number => (
+    //     <li key={number.toString()}>{number}</li>
+    // ));
+    function ListItems(props) {
+        const numbers = props.numbers;
+        // const items = numbers.map(number => (
+        //     <li key={number.toString()}>{number}</li>
+        // ));
+        return (
+            <ul>
+                {
+                    numbers.map(number => (
+                        <li key={number.toString()}>{number}</li>
+                    ))
+                }
+            </ul>
         );
-        return props.warn ? warningButton : null;
-    }
-    class Page extends React.Component {
-        constructor(props) {
-            super(props);
-            this.state = {showWarning:true};
-            console.log(this.state.showWarning);
-        }
-        handleToggleClick = () => {
-            this.setState({
-                showWarning:!this.state.showWarning
-            });
-        }
-        render() {
-            return (
-                <div>
-                    <WarningBanner warn={this.state.showWarning} />
-                    <button onClick={this.handleToggleClick}>
-                        {this.state.showWarning ? 'Hide' : 'Show'}
-                    </button>
-                </div>
-            );
-        }
     }
     ReactDOM.render(
-        <Page/>,
+        <ListItems numbers={numbers}/>,
         root,
     );
+    //7. 条件付きレンダー
+    // function WarningBanner(props) {
+    //     const warningButton = (
+    //         <div className="warning">
+    //             Warning!
+    //         </div>
+    //     );
+    //     return props.warn ? warningButton : null;
+    // }
+    // class Page extends React.Component {
+    //     constructor(props) {
+    //         super(props);
+    //         this.state = {showWarning:true};
+    //         console.log(this.state.showWarning);
+    //     }
+    //     handleToggleClick = () => {
+    //         this.setState({
+    //             showWarning:!this.state.showWarning
+    //         });
+    //     }
+    //     render() {
+    //         return (
+    //             <div>
+    //                 <WarningBanner warn={this.state.showWarning} />
+    //                 <button onClick={this.handleToggleClick}>
+    //                     {this.state.showWarning ? 'Hide' : 'Show'}
+    //                 </button>
+    //             </div>
+    //         );
+    //     }
+    // }
+    // ReactDOM.render(
+    //     <Page/>,
+    //     root,
+    // );
     // function MailBox(props) {
     //     const unReadMessages = props.unreadMessages;
     //     return(
