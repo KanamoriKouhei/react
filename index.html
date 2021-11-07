@@ -20,20 +20,55 @@
     const root = document.getElementById('root');
 
     //7. 条件付きレンダー
-    function MailBox(props) {
-        const unReadMessages = props.unreadMessages;
-        return(
-            <div>
-                <h1>HELLO</h1>
-                {unReadMessages.length > 0 &&
-                    <h2>
-                        YOU HAVE {unReadMessages.length} unread messages.
-                    </h2>
-                }
+    function WarningBanner(props) {
+        const warningButton = (
+            <div className="warning">
+                Warning!
             </div>
         );
+        return props.warn ? warningButton : null;
     }
-    const messages = ['React', 'Re: React', 'Re:Re: React'];
+    class Page extends React.Component {
+        constructor(props) {
+            super(props);
+            this.state = {showWarning:true};
+            console.log(this.state.showWarning);
+        }
+        handleToggleClick = () => {
+            this.setState({
+                showWarning:!this.state.showWarning
+            });
+        }
+        render() {
+            return (
+                <div>
+                    <WarningBanner warn={this.state.showWarning} />
+                    <button onClick={this.handleToggleClick}>
+                        {this.state.showWarning ? 'Hide' : 'Show'}
+                    </button>
+                </div>
+            );
+        }
+    }
+    ReactDOM.render(
+        <Page/>,
+        root,
+    );
+    // function MailBox(props) {
+    //     const unReadMessages = props.unreadMessages;
+    //     return(
+    //         <div>
+    //             <h1>HELLO</h1>
+    //             {
+    //                 unReadMessages.length > 0 &&
+    //                 <h2>
+    //                     YOU HAVE {unReadMessages.length} unread messages.
+    //                 </h2>
+    //             }
+    //         </div>
+    //     );
+    // }
+    // const messages = ['React', 'Re: React', 'Re:Re: React'];
     // ReactDOM.render(
     //     <MailBox unreadMessages={messages}/>,
     //     root,
@@ -61,11 +96,16 @@
     //     render() {
     //         const isLoggedIn = this.state.isLoggedIn;
     //         let button;
-    //         if (isLoggedIn) {
-    //             button = <LogoutButton onClick={this.handleLogoutClick}/>
-    //         } else {
-    //             button = <LoginButton onClick={this.handleLoginClick}/>
+    //         {
+    //             isLoggedIn
+    //             ? button = <LogoutButton onClick={this.handleLogoutClick}/>
+    //             : button = <LoginButton onClick={this.handleLoginClick}/>
     //         }
+    //         // if (isLoggedIn) {
+    //         //     button = <LogoutButton onClick={this.handleLogoutClick}/>
+    //         // } else {
+    //         //     button = <LoginButton onClick={this.handleLoginClick}/>
+    //         // }
     //         return (
     //             <div>
     //                 <Greeting isLoggedIn={isLoggedIn}/>
@@ -95,7 +135,14 @@
     //         </button>
     //     );
     // }
-    //
+    // function Button (props) {
+    //     return(
+    //         <button onClick={props.onClick}>
+    //             {isLoggedIn ? 'LOGOUT' : 'LOGIN'}
+    //         </button>
+    //     );
+    // }
+
     // function UserGreeting(props) {
     //     return <h1>WELCOME BACK</h1>;
     // }
@@ -106,11 +153,12 @@
     //
     // function Greeting(props) {
     //     const isLoggedIn = props.isLoggedIn;
-    //     if (isLoggedIn) {
-    //         return <UserGreeting/>;
-    //     } else {
-    //         return <GuestGreeting/>;
-    //     }
+    //     return isLoggedIn ? <UserGreeting/> : <GuestGreeting/>;
+    //     // if (isLoggedIn) {
+    //     //     return <UserGreeting/>;
+    //     // } else {
+    //     //     return <GuestGreeting/>;
+    //     // }
     // }
 
     // ReactDOM.render(
