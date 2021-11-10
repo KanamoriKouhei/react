@@ -48,8 +48,8 @@
         handleChange = (e) => {
             this.setState({login:e.target.value});
         }
-        handleSignUp(){
-            console.log(this.state.login);
+        handleSignUp = () => {
+            alert(this.state.login);
         }
         render(){
             return(
@@ -102,7 +102,7 @@
     //     );
     // }
     ReactDOM.render(
-        <WelcomeDialog/>,
+        <SignUpDialog/>,
         root,
     );
     //10. state のリフトアップ
